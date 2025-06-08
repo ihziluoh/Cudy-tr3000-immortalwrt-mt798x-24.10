@@ -11,10 +11,16 @@
 #
 
 # Modify default IP
-sed -i 's/192.168.6.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.6.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.6.1/192.168.16.1/g' package/base-files/files/bin/config_generate
+# 修改主机名称
+sed -i 's/OpenWrt/Cudy-TR3000/g' package/base-files/files/bin/config_generate
+
+# 修改WIFI名称
+sed -i 's/OpenWrt/TR3000/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # Modify default theme
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+# sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
