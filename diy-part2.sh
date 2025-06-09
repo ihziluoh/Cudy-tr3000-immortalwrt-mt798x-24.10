@@ -24,3 +24,29 @@ sed -i 's/OpenWrt/Cudy-TR3000/g' package/base-files/files/bin/config_generate
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+
+# 修改wifi名称
+mkdir -p files/etc/uci-defaults
+
+cat > files/etc/uci-defaults/99-custom-ssid <<'EOF'
+#!/bin/sh
+
+# 设置2.4G WiFi名称
+uci set wireless.@wifi-iface[0].ssid='TR3000'
+
+# 如果存在5G接口，设置5G名称
+[ "$(uci show wireless | grep '@wifi-iface\[1\]' -c)" -gt 0 ] && \
+uci set wireless.@wifi-iface[1].ssid='TR3000_5G'
+
+# 可选：设置加密方式与密码（如你没开启加密，可注释这两行）
+# uci set wireless.@wifi-iface[0].encryption='psk2'
+# uci set wireless.@wifi-iface[0].key='12345678'
+# [ "$(uci show wireless | grep '@wifi-iface\[1\]' -c)" -gt 0 ] && \
+# uci set wireless.@wifi-iface[1].encryption='psk2'
+# [ "$(uci show wireless | grep '@wifi-iface\[1\]' -c)" -gt 0 ] && \
+# uci set wireless.@wifi-iface[1].key='12345678'
+
+uci commit wireless
+EOF
+
+chmod +x files/etc/uci-defaults/99-custom-ssid
