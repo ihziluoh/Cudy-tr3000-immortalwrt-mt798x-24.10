@@ -17,7 +17,7 @@ sed -i 's/192.168.6.1/192.168.16.1/g' package/base-files/files/bin/config_genera
 sed -i 's/OpenWrt/Cudy-TR3000/g' package/base-files/files/bin/config_generate
 
 # 修改WIFI名称
-sed -i 's/OpenWrt/TR3000/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# sed -i 's/OpenWrt/TR3000/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # Modify default theme
 # sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
